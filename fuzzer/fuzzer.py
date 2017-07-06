@@ -587,11 +587,7 @@ class Fuzzer(object):
                 err += "AFL Warning: We probably want the fork() children to run first\n"
                 err += "execute 'echo 1 | sudo tee /proc/sys/kernel/sched_child_runs_first'\n"
 
-        # Spit out all errors at the same time
-        if err != "":
-            l.error(err)
-            raise InstallError(err)
-
+        l.error(err)
 
     @staticmethod
     def _get_base():
