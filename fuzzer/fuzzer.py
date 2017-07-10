@@ -164,7 +164,7 @@ class Fuzzer(object):
             self.afl_dir          = shellphish_afl.afl_dir(self.os)
 
             # the path to AFL capable of calling driller
-            self.afl_path         = "/usr/local/bin/afl-unix/afl-fuzz"
+            self.afl_path         = shellphish_afl.afl_bin(self.os)
 
             if self.os == 'cgc':
                 self.afl_path_var = shellphish_afl.afl_path_var('cgc')
