@@ -61,7 +61,7 @@ class Fuzzer(object):
     ''' Fuzzer object, spins up a fuzzing job on a binary '''
 
     def __init__(
-        self, binary_path, work_dir, afl_count=1, library_path=None, time_limit=None, memory="8G",
+        self, binary_path, work_dir, afl_count=1, library_path=None, time_limit=None, memory="4G",
         target_opts=None, extra_opts=None, create_dictionary=False,
         seeds=None, crash_mode=False, never_resume=False, qemu=True, stuck_callback=None,
         force_interval=None, job_dir=None
