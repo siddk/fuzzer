@@ -64,7 +64,7 @@ class Fuzzer(object):
         self, binary_path, work_dir, afl_count=1, library_path=None, time_limit=None, memory="4G",
         target_opts=None, extra_opts=None, create_dictionary=False,
         seeds=None, crash_mode=False, never_resume=False, qemu=True, stuck_callback=None,
-        force_interval=None, job_dir=None
+        force_interval=None, job_dir=None, havoc_only=False
     ):
         '''
         :param binary_path: path to the binary to fuzz. List or tuple for multi-CB.
@@ -93,6 +93,7 @@ class Fuzzer(object):
         self.memory         = memory
         self.qemu           = qemu
         self.force_interval = force_interval
+        self.havoc_only     = havoc_only
 
         Fuzzer._perform_env_checks()
 
@@ -507,6 +508,9 @@ class Fuzzer(object):
 
         if self.qemu:
             args += ["-Q"]
+
+        if self.havoc_only:
+            args += ["-d"]
 
         if self.crash_mode:
             args += ["-C"]
