@@ -515,12 +515,12 @@ class Fuzzer(object):
         if self.crash_mode:
             args += ["-C"]
 
-        if self.fuzz_id == 0:
-            args += ["-M", "fuzzer-master"]
-            outfile = "fuzzer-master.log"
-        else:
-            args += ["-S", "fuzzer-%d" % self.fuzz_id]
-            outfile = "fuzzer-%d.log" % self.fuzz_id
+        # if self.fuzz_id == 0:
+        #     args += ["-M", "fuzzer-master"]
+        #     outfile = "fuzzer-master.log"
+        # else:
+        #     args += ["-S", "fuzzer-%d" % self.fuzz_id]
+        #     outfile = "fuzzer-%d.log" % self.fuzz_id
 
         if self.dictionary is not None:
             args += ["-x", self.dictionary]
