@@ -509,9 +509,6 @@ class Fuzzer(object):
         if self.qemu:
             args += ["-Q"]
 
-        if self.havoc_only:
-            args += ["-d"]
-
         if self.crash_mode:
             args += ["-C"]
 
