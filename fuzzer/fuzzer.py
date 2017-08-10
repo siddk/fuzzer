@@ -513,8 +513,8 @@ class Fuzzer(object):
             args += ["-C"]
 
         if self.fuzz_id == 0 and not self.havoc_only:
-            args += ["-M", "fuzzer-master"]
-            outfile = "fuzzer-master.log"
+            args += ["-M", "fuzzer-%d" % self.fuzz_id]
+            outfile = "fuzzer-%d.log" % self.fuzz_id
         else:
             args += ["-S", "fuzzer-%d" % self.fuzz_id]
             outfile = "fuzzer-%d.log" % self.fuzz_id
