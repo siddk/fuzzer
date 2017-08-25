@@ -506,7 +506,7 @@ class Fuzzer(object):
         args += ["-i", self.in_dir]
         args += ["-o", self.out_dir]
         args += ["-m", self.memory]
-        args += ["-a", self.havoc_stacks]
+        args += ["-a", str(self.havoc_stacks)]
 
         if self.qemu:
             args += ["-Q"]
