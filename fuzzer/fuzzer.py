@@ -64,7 +64,7 @@ class Fuzzer(object):
         self, binary_path, work_dir, afl_count=1, library_path=None, time_limit=None, memory="4G",
         target_opts=None, extra_opts=None, create_dictionary=False,
         seeds=None, crash_mode=False, never_resume=False, qemu=True, stuck_callback=None,
-        force_interval=None, job_dir=None, havoc_only=False
+        force_interval=None, job_dir=None, havoc_only=False, havoc_stacks=0
     ):
         '''
         :param binary_path: path to the binary to fuzz. List or tuple for multi-CB.
@@ -94,6 +94,7 @@ class Fuzzer(object):
         self.qemu           = qemu
         self.force_interval = force_interval
         self.havoc_only     = havoc_only
+        self.havoc_stacks   = havoc_stacks
 
         Fuzzer._perform_env_checks()
 
@@ -136,7 +137,7 @@ class Fuzzer(object):
         self.procs            = [ ]
         # start the fuzzer ids at 0
         self.fuzz_id          = 0
-        # test if we're resuming an old run
+        # TEST if we're resuming an old run
         self.resuming         = bool(os.listdir(self.out_dir)) if os.path.isdir(self.out_dir) else False
         # has the fuzzer been turned on?
         self._on = False
@@ -505,6 +506,7 @@ class Fuzzer(object):
         args += ["-i", self.in_dir]
         args += ["-o", self.out_dir]
         args += ["-m", self.memory]
+        args += ["-a", self.havoc_stacks]
 
         if self.qemu:
             args += ["-Q"]
@@ -584,7 +586,7 @@ class Fuzzer(object):
                     err += "AFL Error: Suboptimal CPU scaling governor\n"
                     err += "execute 'cd /sys/devices/system/cpu; echo performance | sudo tee cpu*/cpufreq/scaling_governor'\n"
 
-        # TODO: test, to be sure it doesn't mess things up
+        # TODO: TEST, to be sure it doesn't mess things up
         with open("/proc/sys/kernel/sched_child_runs_first") as f:
             if not "1" in f.read():
                 err += "AFL Warning: We probably want the fork() children to run first\n"
