@@ -64,7 +64,7 @@ class Fuzzer(object):
         self, binary_path, work_dir, afl_count=1, library_path=None, time_limit=None, memory="4G",
         target_opts=None, extra_opts=None, create_dictionary=False,
         seeds=None, crash_mode=False, never_resume=False, qemu=True, stuck_callback=None,
-        force_interval=None, job_dir=None, havoc_only=False, havoc_stacks=0, prob_dist="70|62|62|62|62|62|62|62|62|62|62|62|62|62|62|62"
+        force_interval=None, job_dir=None, havoc_only=False, havoc_stacks=0, prob_dist="70J62J62J62J62J62J62J62J62J62J62J62J62J62J62J62"
     ):
         '''
         :param binary_path: path to the binary to fuzz. List or tuple for multi-CB.
